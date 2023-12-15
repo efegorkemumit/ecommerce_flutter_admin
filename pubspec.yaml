@@ -45,6 +45,7 @@ dependencies:
   ionicons: ^0.2.2
   image_picker: ^1.0.4
   uuid: ^4.2.2
+  dotted_border: ^2.1.0
 
 dev_dependencies:
   flutter_test:
