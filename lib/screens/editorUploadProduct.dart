@@ -1,6 +1,8 @@
 import 'package:ecommerce_flutter_admin/constans/app_constans.dart';
+import 'package:ecommerce_flutter_admin/constans/validator.dart';
 import 'package:ecommerce_flutter_admin/models/product_model.dart';
 import 'package:ecommerce_flutter_admin/services/assets_manager.dart';
+import 'package:ecommerce_flutter_admin/widget/subtitle_text.dart';
 import 'package:ecommerce_flutter_admin/widget/title_text.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -153,8 +155,118 @@ class _EditorUploadProductScreenState extends State<EditorUploadProductScreen> {
                               child: Column(
                                 children: [
                                   TextFormField(
+                                    controller: _titleController,
+                                    key: const ValueKey('Title'),
+                                    maxLength: 80,
+                                    minLines: 1,
+                                    maxLines: 2,
+                                    keyboardType: TextInputType.multiline,
+                                    textInputAction: TextInputAction.newline,
+                                    decoration: const InputDecoration(
+                                      hintText: "Product title",
+                                    ),
+                                    validator: (value){
+                                      return MyValidators.uploadProdText(
+                                        value: value,
+                                        toBeReturnedString: "Plaese Enter a valid title"
+                                      );
+                                    },
 
-                                  )
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Flexible(
+                                          flex:1,
+                                           child:  TextFormField(
+                                            controller: _priceController,
+                                            key: const ValueKey('Price \$'),
+
+                                            keyboardType: TextInputType.number,
+                                            decoration: const InputDecoration(
+                                              hintText: "Price",
+                                              prefix:  SubTitleTextWidget(label: "\$  ",
+                                                color: Colors.blue,
+                                                fontSize: 15,
+                                              )
+                                            ),
+                                            validator: (value){
+                                              return MyValidators.uploadProdText(
+                                                  value: value,
+                                                  toBeReturnedString: "Plaese Enter a missing"
+                                              );
+                                            },
+
+                                          ),
+
+
+
+
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Flexible(
+                                        flex:1,
+                                        child:  TextFormField(
+                                          controller: _quanttiyContoller,
+                                          key: const ValueKey('Quantity'),
+
+                                          keyboardType: TextInputType.number,
+                                          textInputAction: TextInputAction.newline,
+                                          decoration: const InputDecoration(
+                                              hintText: "Quantity",
+                                              prefix:  SubTitleTextWidget(label: "QTY : ",
+                                                color: Colors.blue,
+                                                fontSize: 15,
+                                              )
+                                          ),
+                                          validator: (value){
+                                            return MyValidators.uploadProdText(
+                                                value: value,
+                                                toBeReturnedString: "Quantity is missed"
+                                            );
+                                          },
+
+                                        ),
+
+
+
+
+                                      ),
+
+                                    ],
+                                  ),
+
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+
+                                  TextFormField(
+                                    controller: _descriptionController,
+                                    key: const ValueKey('Description'),
+                                    minLines: 5,
+                                    maxLines: 8,
+                                    maxLength: 1000,
+                                    keyboardType: TextInputType.multiline,
+                                    decoration: const InputDecoration(
+                                      hintText: "Product title",
+                                    ),
+                                    validator: (value){
+                                      return MyValidators.uploadProdText(
+                                          value: value,
+                                          toBeReturnedString: "Desciprion is problem"
+                                      );
+                                    },
+
+                                  ),
+
+                                  const SizedBox(
+                                    height: kBottomNavigationBarHeight+10
+                                  ),
+
                                 ],
 
                               ),

@@ -44,6 +44,15 @@ class MyValidators{
     return null;
   }
 
+  static String? uploadProdText({String? value, String? toBeReturnedString})
+  {
+    if(value!.isEmpty){
+      return toBeReturnedString;
+
+    }
+    return null;
+  }
+
 
 
 
