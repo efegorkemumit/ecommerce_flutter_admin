@@ -22,14 +22,14 @@ class DashboardButtonModel{
 
     DashboardButtonModel(
         text: "Add new product",
-        imagePath: AssetsManager.bagimg1,
+        imagePath: AssetsManager.bagimg5,
         onPressed: (){
           Navigator.pushNamed(context, EditorUploadProductScreen.routName);
         },
     ),
     DashboardButtonModel(
       text: "All Product",
-      imagePath: AssetsManager.file,
+      imagePath: AssetsManager.bagimages2,
       onPressed: (){
         Navigator.pushNamed(context, SearchScreen.routName);
       },
@@ -37,7 +37,7 @@ class DashboardButtonModel{
 
     DashboardButtonModel(
       text: "View Orders",
-      imagePath: AssetsManager.file,
+      imagePath: AssetsManager.woman,
       onPressed: (){
         Navigator.pushNamed(context, OrderScreen.routName);
       },

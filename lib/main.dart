@@ -2,6 +2,9 @@ import 'package:ecommerce_flutter_admin/constans/theme_data.dart';
 import 'package:ecommerce_flutter_admin/provider/product_provider.dart';
 import 'package:ecommerce_flutter_admin/provider/theme_provider.dart';
 import 'package:ecommerce_flutter_admin/screens/DashboardScreen.dart';
+import 'package:ecommerce_flutter_admin/screens/editorUploadProduct.dart';
+import 'package:ecommerce_flutter_admin/screens/search_screen.dart';
+import 'package:ecommerce_flutter_admin/widget/order/order_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -32,6 +35,11 @@ class MyApp extends StatelessWidget {
 
         //    home:const LoginScreen(),
         home:const DashboardScreen(),
+          routes: {
+            OrderScreen.routName: (context) => const OrderScreen(),
+            SearchScreen.routName: (context) => const SearchScreen(),
+            EditorUploadProductScreen.routName: (context) => const EditorUploadProductScreen(),
+          },
 
       );
 
