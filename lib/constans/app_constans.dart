@@ -3,6 +3,7 @@
 
 import 'package:ecommerce_flutter_admin/models/categories_model.dart';
 import 'package:ecommerce_flutter_admin/services/assets_manager.dart';
+import 'package:flutter/material.dart';
 
 class AppConstans {
 
@@ -18,7 +19,7 @@ class AppConstans {
     AssetsManager.slide6,
     AssetsManager.slide7,
   ];
-  static List<CategoriesModel> categoriesList= [
+  static List<CategoriesModel> categoriesList2= [
     CategoriesModel(
       id: "Computer",
       name: "Computer",
@@ -55,4 +56,27 @@ class AppConstans {
       image: AssetsManager.watch,
     ),
   ];
+
+
+  static List<String> categorieList = [
+    'Cameras',
+    'Wearables',
+    'Audio',
+    'Gaming',
+    'Books',
+    'TVs',
+    'Shoes'
+
+
+  ];
+
+  static List<DropdownMenuItem<String>>? get categoriesDropDownList{
+    List<DropdownMenuItem<String>>? menuItem=
+        List<DropdownMenuItem<String>>.generate(categorieList.length, (index) => DropdownMenuItem(
+            child: Text(categorieList[index]),
+             value: categorieList[index],
+        ),
+        );
+        return menuItem;
+  }
 }

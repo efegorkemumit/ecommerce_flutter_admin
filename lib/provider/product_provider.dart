@@ -40,7 +40,7 @@ class ProductProvider with ChangeNotifier{
       productId: 'iphone14-64-black',
       productTitle: "Apple iPhone 14 Pro (128GB) - Black",
       productPrice: "299.99",
-      productCategory: "shoes",
+      productCategory: "Shoes",
       productDescription:
       "6.1-inch  magical way to interact with your .  mode, for  on the move. Accident detection, vital safety technology that calls for help for you. All-day battery life and up to 23 hours of video playback.",
       productImage: "https://i.ibb.co/BtMBSgK/1-iphone14-128gb-black.webp",
@@ -51,7 +51,7 @@ class ProductProvider with ChangeNotifier{
       productId: 'samsung-galaxy-s22-ultra',
       productTitle: "Samsung Galaxy S22 Ultra (256GB) - Phantom Black",
       productPrice: "1299.99",
-      productCategory: "books",
+      productCategory: "Books",
       productDescription:
       "Introducing the Samsung Galaxy S22 Ultra with a stunning 6.8-inch Dynamic AMOLED display. Capture every moment with the 108MP camera. Enjoy the power of the latest Exynos processor and a massive 5000mAh battery. The sleek Phantom Black design adds a touch of elegance to your mobile experience.",
       productImage: "https://i.ibb.co/nbwTvXQ/2-iphone13-mini-256gb-midnight.webp",
@@ -63,7 +63,7 @@ class ProductProvider with ChangeNotifier{
       productId: 'macbook-air-m2-512gb',
       productTitle: "Apple MacBook Air M2 (512GB) - Space Gray",
       productPrice: "1599.99",
-      productCategory: "books",
+      productCategory: "Books",
       productDescription:
       "Experience the incredible performance of the Apple MacBook Air M2. Powered by the latest M2 chip, this laptop delivers unparalleled speed and efficiency. The 13.3-inch Retina display offers stunning visuals, while the sleek Space Gray design adds a touch of sophistication.",
       productImage: "https://i.ibb.co/G7nXCW4/3-i-Phone-14.jpg",

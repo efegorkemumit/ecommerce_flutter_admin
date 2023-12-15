@@ -284,6 +284,18 @@ class _EditorUploadProductScreenState extends State<EditorUploadProductScreen> {
 /////////////   Dropdown
                 /////////////
 
+                DropdownButton(
+                    items: AppConstans.categoriesDropDownList,
+                    value: _categoryValue,
+                    hint: const Text("Choese a category"),
+                    onChanged: (String? value){
+                      setState(() {
+                        _categoryValue=value;
+                      });
+                    }
+
+                ),
+
 
                 const SizedBox(
                   height: 20,
