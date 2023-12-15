@@ -1,4 +1,6 @@
 import 'package:ecommerce_flutter_admin/services/assets_manager.dart';
+import 'package:ecommerce_flutter_admin/widget/dashboard_btn_model.dart';
+import 'package:ecommerce_flutter_admin/widget/dashboard_btn_widget.dart';
 import 'package:ecommerce_flutter_admin/widget/title_text.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +25,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
         title:  TitleTextWidget(label:"Dashboard Screen")
         ),
+      body: GridView.count(
+          crossAxisCount: 2,
+              children: List.generate(
+          DashboardButtonModel.dashboardBtnList(context).length, (index) =>
+        DasboardButtonWidget(
+            text: DashboardButtonModel.dashboardBtnList(context)[index].text,
+            imagePath: DashboardButtonModel.dashboardBtnList(context)[index].imagePath,
+            onPressed: DashboardButtonModel.dashboardBtnList(context)[index].onPressed
+
+        ))
+
+
+      ),
     );
   }
 }
