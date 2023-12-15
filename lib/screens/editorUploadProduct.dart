@@ -103,7 +103,7 @@ class _EditorUploadProductScreenState extends State<EditorUploadProductScreen> {
 
                   onPressed: (){},
                   icon: const Icon(Icons.clear),
-                  label: const Text("Upload Product"),
+                  label:  Text(isEditing ? "Save Product" : "Add Product" ),
 
                   style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.all(14),
@@ -118,12 +118,18 @@ class _EditorUploadProductScreenState extends State<EditorUploadProductScreen> {
 
         appBar: AppBar(
             centerTitle: true,
-            leading: Padding(
-              padding: const EdgeInsets.all(8.0),
-
-
+            leading: IconButton(
+              onPressed: (){
+                if(Navigator.canPop(context)){
+                  Navigator.pop(context);
+                }
+              },
+              icon: const Icon(
+                Icons.arrow_back_ios,
+                size: 20,
+              ),
             ),
-            title:  TitleTextWidget(label:  "Search products")
+            title:  TitleTextWidget(label: isEditing ? "Edit Product" : "New Product")
         ),
 
         body: SafeArea(

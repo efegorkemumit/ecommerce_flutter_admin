@@ -49,12 +49,17 @@ class _SearchScreenState extends State<SearchScreen> {
       },
       child: Scaffold(
           appBar: AppBar(
-              leading: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image.asset(
-                    AssetsManager.card
+              centerTitle: true,
+              leading: IconButton(
+                onPressed: (){
+                  if(Navigator.canPop(context)){
+                    Navigator.pop(context);
+                  }
+                },
+                icon: const Icon(
+                  Icons.arrow_back_ios,
+                  size: 20,
                 ),
-
               ),
               title:  TitleTextWidget(label: passedCategory ?? "Search products")
           ),

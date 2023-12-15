@@ -2,6 +2,7 @@ import 'dart:developer';
 
 
 import 'package:ecommerce_flutter_admin/provider/product_provider.dart';
+import 'package:ecommerce_flutter_admin/screens/editorUploadProduct.dart';
 import 'package:ecommerce_flutter_admin/widget/subtitle_text.dart';
 import 'package:ecommerce_flutter_admin/widget/title_text.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
@@ -34,7 +35,17 @@ class _ProductWidgetState extends State<ProductWidget> {
         : Padding(
       padding: EdgeInsets.all(0.0),
       child: GestureDetector(
-        onTap: () async{    },
+        onTap: () async{
+          Navigator.push(context, MaterialPageRoute(
+            builder: (context){
+              return EditorUploadProductScreen(
+                productModel:  getCurrProduct,
+              );
+            },
+          ));
+
+
+        },
         child: Column(
           children: [
             ClipRRect(
