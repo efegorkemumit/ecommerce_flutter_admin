@@ -46,6 +46,8 @@ dependencies:
   image_picker: ^1.0.4
   uuid: ^4.2.2
   dotted_border: ^2.1.0
+  firebase_auth: ^4.15.3
+  firebase_core: ^2.24.2
 
 dev_dependencies:
   flutter_test:
