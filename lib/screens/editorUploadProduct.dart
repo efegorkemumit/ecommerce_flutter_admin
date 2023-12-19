@@ -1,15 +1,20 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:ecommerce_flutter_admin/constans/app_constans.dart';
 import 'package:ecommerce_flutter_admin/constans/validator.dart';
 import 'package:ecommerce_flutter_admin/models/product_model.dart';
 import 'package:ecommerce_flutter_admin/services/assets_manager.dart';
 import 'package:ecommerce_flutter_admin/services/myapp_functions.dart';
+import 'package:ecommerce_flutter_admin/widget/loader_manager.dart';
 import 'package:ecommerce_flutter_admin/widget/subtitle_text.dart';
 import 'package:ecommerce_flutter_admin/widget/title_text.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:uuid/uuid.dart';
 
 class EditorUploadProductScreen extends StatefulWidget {
   static const routName = "/EditorUploadProductScreen";
@@ -29,6 +34,8 @@ class _EditorUploadProductScreenState extends State<EditorUploadProductScreen> {
   String? _categoryValue;
   bool isEditing = false;
   String? productNetworkImage;
+  String? productImageUrl;
+  bool _isLoading =false;
 
   @override
   void initState() {
@@ -84,7 +91,60 @@ class _EditorUploadProductScreenState extends State<EditorUploadProductScreen> {
       }
       final isValid  = _formKey.currentState!.validate();
       FocusScope.of(context).unfocus();
-      if(isValid){}
+      if(isValid){
+
+        try{
+          setState(() {
+            _isLoading =true;
+          });
+
+          final ref = FirebaseStorage.instance.ref()
+              .child("productImages")
+              .child("${_titleController.text}.jpg");
+          await ref.putFile(File(_pickedImage!.path));
+          productImageUrl = await ref.getDownloadURL();
+
+          final productId=Uuid().v4();
+          await FirebaseFirestore.instance.collection("products").doc(productId).set({
+            'productId': productId,
+            'productTitle': _titleController.text,
+            'productPrice': _priceController.text,
+            'productCategory': _categoryValue,
+            'productDescription': _descriptionController.text,
+            'productImage': productImageUrl,
+            'productQuantity': _quanttiyContoller.text,
+            'createdAt': Timestamp.now(),
+
+          });
+          Fluttertoast.showToast(msg: "Product has beed added Success", textColor: Colors.red);
+          if(!mounted) return;
+          MyAppFunctions.showErrorOrWaningDialog(
+              context: context,
+              subtitle: "Clear Form ? ",
+              fct: (){
+                clearForm();
+              });
+
+
+        } on FirebaseException catch (error){
+          await MyAppFunctions.showErrorOrWaningDialog(
+              context: context,
+              subtitle: error.message.toString(),
+              fct: (){}
+          );
+        } catch (error) {
+          await MyAppFunctions.showErrorOrWaningDialog(
+              context: context,
+              subtitle: error.toString(),
+              fct: (){}
+          );
+        }
+        finally {
+          setState(() {
+            _isLoading=false;
+          });
+        }
+    }
 
     }
 
@@ -199,7 +259,7 @@ class _EditorUploadProductScreenState extends State<EditorUploadProductScreen> {
             title:  TitleTextWidget(label: isEditing ? "Edit Product" : "New Product")
         ),
 
-        body: SafeArea(
+        body: LoadingManager(isLoading: _isLoading, child:  SafeArea(
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -444,6 +504,7 @@ class _EditorUploadProductScreenState extends State<EditorUploadProductScreen> {
         ),
 
 
+      ),
       ),
 
 

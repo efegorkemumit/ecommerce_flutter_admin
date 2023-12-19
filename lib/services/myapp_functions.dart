@@ -51,6 +51,7 @@ class MyAppFunctions{
                     ),
                     TextButton(
                       onPressed: (){
+                        fct();
                         Navigator.pop(context);
 
                       },
